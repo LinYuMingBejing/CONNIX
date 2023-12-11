@@ -16,6 +16,9 @@ import com.linecorp.bot.model.message.TextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserMessageService {
     @Autowired
@@ -54,5 +57,17 @@ public class UserMessageService {
     public String findReplyTokenByUserId(String userId) throws UserNotFoundException {
         UserEntity userEntity = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
         return userEntity.getReplyToken();
+    }
+
+    public List<String> findMessageByUserId(String userId) throws UserNotFoundException {
+        List<String> messages = messageRepository.findByUserId(userId)
+                .stream()
+                .map(entity -> entity.getMessage())
+                .collect(Collectors.toList());
+
+        if (messages.isEmpty()){
+            throw new UserNotFoundException();
+        }
+        return messages;
     }
 }
