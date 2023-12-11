@@ -15,10 +15,14 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'com.linecorp.bot:line-bot-spring-boot:4.3.0'
     implementation 'com.linecorp.bot:line-bot-model:4.3.0'
     implementation 'com.linecorp.bot:line-bot-api-client:4.3.0'
     implementation 'com.linecorp.bot:line-bot-servlet:4.3.0'
+    implementation 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
